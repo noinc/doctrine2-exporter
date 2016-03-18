@@ -236,7 +236,7 @@ class Table extends BaseTable
                 'cascade'      => $this->getFormatter()->getCascadeOption($fk1->parseComment('cascade')),
                 'fetch'        => $this->getFormatter()->getFetchOption($fk1->parseComment('fetch')),
             );
-            $relationName = Inflector::pluralize($relation['refTable']->getRawTableName());
+            $relationName = lcfirst($this->getRelatedVarName($relation['refTable']->getModelName(), null, true));
             // if this is the owning side, also output the JoinTable Annotation
             // otherwise use "mappedBy" feature
             if ($isOwningSide) {
